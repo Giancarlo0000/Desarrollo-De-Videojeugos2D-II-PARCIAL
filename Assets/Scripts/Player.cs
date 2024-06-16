@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    //Descripción: Personaje que es controlado por el jugador, tiene que llegar a una meta antes de que se agote el tiempo mientras evita perder todas sus vidas por los enemigos.
     public float speed;
     public float jumpForce;
 

@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemyClass : MonoBehaviour
 {
-    //Herencia - Clase enemigo que se usará para los enemigos normales y el jefe 
+    //Herencia - Clase enemigo que se usará para los enemigos normales y el jefe
     [SerializeField] protected float speed = 2;
     [SerializeField] protected int damage = 1;
     [SerializeField] protected float followRange = 2;

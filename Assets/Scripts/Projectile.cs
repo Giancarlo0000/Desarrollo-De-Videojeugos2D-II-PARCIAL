@@ -3,12 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class Projectile : MonoBehaviour
 {
+    //Descripción: Proyectil que dispara el jefe, puede hacer 1 o 2 de daño.
+
     public float Speed = 10f;
     public int Damage = 1;
     public float CriticalMultiplier = 2;
 
     private Transform player;
-    private Vector3 direction;
+    private CVector2 direction; //Vector creado en CVector2
 
     private enum BulletType { Default, Critical}; //Enumerador
     private BulletType bulletType;
@@ -29,7 +31,10 @@ public class Projectile : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         if (player != null)
         {
-            direction = (player.position - transform.position).normalized;
+            CVector2 playerPosition = new CVector2(player.position.x, player.position.y);
+            CVector2 projectilePosition = new CVector2(transform.position.x, transform.position.y);
+
+            direction = CVector2.Normaliza(playerPosition - projectilePosition); //Vector: Normalización (Magnitud incluído en CVector2) y Aritmética
         }
         else
         {
@@ -39,9 +44,15 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         //Moverse a la ubicación obtenida del jugador
-        transform.Translate(direction * Speed * Time.deltaTime);
+        Vector3 movement = new Vector3(direction.X, direction.Y, 0f) * Speed * Time.deltaTime;
+        transform.Translate(movement);
+
         //Destruir el proyectil si está muy lejos del jugador
-        if (Vector3.Distance(transform.position, player.position) > 20f)
+
+        CVector2 currentPosition = new CVector2(transform.position.x, transform.position.y);
+        CVector2 playerPosition = new CVector2(player.position.x, player.position.y);
+
+        if (CVector2.Distancia(currentPosition,playerPosition) > 20f) //Vector: Distancia
         {
             Destroy(gameObject);
         }

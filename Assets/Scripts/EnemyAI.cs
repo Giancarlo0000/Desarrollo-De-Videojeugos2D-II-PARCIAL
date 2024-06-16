@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class EnemyAI : EnemyClass
 {
+    //Descripción: Enemigos que van de un punto a otro, cuando el jugador está cerca, se dirigen hacia él, solo hace 1 de daño.
+
     public Transform[] patrolPoints; // Puntos entre los cuales el enemigo patrullará
 
     private int currentPatrolIndex = 0; // Índice del punto de patrulla actual

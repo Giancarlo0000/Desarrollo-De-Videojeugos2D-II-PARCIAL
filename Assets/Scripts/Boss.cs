@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Boss : EnemyClass
 {
+    //Descripción: Jefe que se acerca al jugador, si toca al jugador, automáticamente el jugador pierde, dispara cada cierto periodo de tiempo.
+
     public float firingFrequency = 2f;
 
     public Transform shootingPoint;
