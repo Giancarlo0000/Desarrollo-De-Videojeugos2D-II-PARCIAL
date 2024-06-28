@@ -78,6 +78,7 @@ public class Projectile : MonoBehaviour
             /*myPlayer.Lives = myPlayer.Lives - Damage;*/
             float x = myPlayer.Lives;
             CheckPlayerLife(x);
+            CameraShakeController.instance.ShakeCamera(0.5f, 0.1f);
             Destroy(gameObject);
         }
     }

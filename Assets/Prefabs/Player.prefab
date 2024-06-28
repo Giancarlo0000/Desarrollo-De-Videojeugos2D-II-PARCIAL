@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpForce: 13.5
-  lives: 2
+  lives: 3
   groundCheckRadius: 0.175
   groundCheck: {fileID: 6679787832265870683}
   groundLayer:
@@ -145,6 +145,7 @@ MonoBehaviour:
   yellowWall: {fileID: 0}
   greenWall: {fileID: 0}
   goal: {fileID: 0}
+  isLevelCompleted: 0
 --- !u!50 &1408233423526244115
 Rigidbody2D:
   serializedVersion: 4

@@ -88,6 +88,12 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(goal);
             isLevelCompleted = true;
+            Invoke("LoadLevelsScene", 2f);
         }
+    }
+
+    void LoadLevelsScene()
+    {
+        SceneManager.LoadScene("Levels");
     }
 }

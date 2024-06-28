@@ -61,6 +61,9 @@ public class EnemyClass : MonoBehaviour
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
+
+            CameraShakeController.instance.ShakeCamera(0.5f, 0.1f);
+
             Destroy(gameObject);
         }
     }
