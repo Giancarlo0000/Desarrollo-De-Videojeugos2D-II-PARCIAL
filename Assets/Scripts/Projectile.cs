@@ -75,7 +75,6 @@ public class Projectile : MonoBehaviour
                     break;
             }
             Player myPlayer = collision.gameObject.GetComponent<Player>(); //Acceder a propiedades del jugador
-            /*myPlayer.Lives = myPlayer.Lives - Damage;*/
             float x = myPlayer.Lives;
             CheckPlayerLife(x);
             CameraShakeController.instance.ShakeCamera(0.5f, 0.1f);

@@ -57,6 +57,11 @@ public class Player : MonoBehaviour
 
         rb.velocity = new Vector2(dirX * speed, rb.velocity.y);
 
+        if (isGrounded && Mathf.Approximately(rb.velocity.y, 0))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+        }
+
         gameObject.GetComponent<SpriteRenderer>().color = lives > 1 ? Color.white : new Color(1, 0.5f, 0.5f); //Operador ternario
     }
 
@@ -85,8 +90,6 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Goal"))
         {
-            Destroy(collision.gameObject);
-            Destroy(goal);
             isLevelCompleted = true;
             Invoke("LoadLevelsScene", 2f);
         }
