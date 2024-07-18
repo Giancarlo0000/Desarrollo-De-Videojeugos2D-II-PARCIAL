@@ -43,5 +43,15 @@ public class PlayerAnimation : MonoBehaviour
         
         anim.SetFloat("Falling", rb.velocity.y);
         anim.SetBool("isOnGround", isGrounded);
+
+        if (isGrounded && !isRunning)
+        {
+            anim.Play("Idle");
+        }
+
+        if (isGrounded && isRunning)
+        {
+            anim.Play("Run");
+        }
     }
 }

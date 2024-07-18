@@ -5,6 +5,9 @@ public class Player : MonoBehaviour
 {
     //Descripción: Personaje que es controlado por el jugador, tiene que llegar a una meta antes de que se agote el tiempo mientras evita perder todas sus vidas por los enemigos.
     public float speed;
+    public float maxJumpForce;
+    public float minJumpForce;
+    public float jumpTime;
     public float jumpForce;
 
     [SerializeField]private float lives;
@@ -25,9 +28,12 @@ public class Player : MonoBehaviour
 
     private bool isGrounded = false;
     private bool isLookingRight = true;
+    private bool isJumping = false;
+    private float jumpTimer;
     private Rigidbody2D rb;
 
     public bool isLevelCompleted = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -50,11 +56,29 @@ public class Player : MonoBehaviour
             isLookingRight = true;
         }
 
+
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            isJumping = true;
+            jumpTimer = 0;
         }
 
+        if (Input.GetButton("Jump") && isJumping)
+        {
+            jumpTimer += Time.deltaTime;
+            if (jumpTimer > jumpTime)
+            {
+                jumpTimer = jumpTime;
+                isJumping = false;
+            }
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Lerp(minJumpForce, maxJumpForce, jumpTimer / jumpTime));
+        }
+
+        if (Input.GetButtonUp("Jump"))
+        {
+            isJumping = false;
+        }
+        print(jumpTimer);
         rb.velocity = new Vector2(dirX * speed, rb.velocity.y);
 
         if (isGrounded && Mathf.Approximately(rb.velocity.y, 0))

@@ -15,6 +15,19 @@ public class Goal : MonoBehaviour
         {
             boxCollider.enabled = false;
             Confetti.Play();
+
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            GameObject[] bosses = GameObject.FindGameObjectsWithTag("Boss");
+
+            foreach (GameObject enemy in enemies)
+            {
+                Destroy(enemy);
+            }
+
+            foreach (GameObject boss in bosses)
+            {
+                Destroy(boss);
+            }
         }
     }
 }
